@@ -1,0 +1,6 @@
+= syn
+
+Describe your project here
+
+:include:syn.rdoc
+
