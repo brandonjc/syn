@@ -1,5 +1,71 @@
-= syn
+= <tt>syn</tt>
 
-Generate this with
-    syn rdoc
-After you have described your command line interface
+Command Suite for the Synoptix Reporting Tool
+
+    syn [global options] command_name [command-specific options] [--] arguments...
+
+* Use the command +help+ to get a summary of commands
+* Use the command <tt>help command_name</tt> to get a help for +command_name+
+* Use <tt>--</tt> to stop command line argument processing; useful if your arguments have dashes in them
+
+== Global Options
+These options are available for any command and are specified before the name of the command
+
+[<tt>-d, --directory=Directory</tt>] Base directory to run Synoptix <i>( default: <tt>./</tt>)</i>
+[<tt>--help</tt>] Show this message
+[<tt>-m, --memory=Max Memory</tt>] Max memory setting <i>( default: <tt>512m</tt>)</i>
+[<tt>-u, --userdir=User Directory</tt>] User directory to run Synoptix <i>( default: <tt>/Users/bcampbell</tt>)</i>
+== Commands
+[<tt>help</tt>] Shows list of commands or help for one command
+[<tt>initconfig</tt>] Initialize the config file using current global options
+[<tt>login</tt>] Launch Synoptix Login
+[<tt>runner</tt>] Runs the Synoptix Report Runner.  If the report you are running contains any Variable parameters, and you would like to have those parameters defaulted, you can enter the defaulted parameters as follows: parameterName=”value”. The parameter name is the name that you would see when you modify the Sphere properties. In the case below you would enter the following: “Customer #=value” Please Note: Because the parameterName in this case contains a space, the entire string is surrounded by quotes.
+
+[<tt>server</tt>] Launch the Report Scheduling Server
+
+=== <tt>help [command]</tt>
+
+Shows list of commands or help for one command
+
+Gets help for the application or its commands.  Can also list the commands in a way helpful to creating a bash-style completion function
+
+==== Options
+These options are specified *after* the command.
+
+[<tt>-c, --completion</tt>] List all commands one line at a time, for use with shell completion ([command] argument is partial command to match)
+=== <tt>initconfig </tt>
+
+Initialize the config file using current global options
+
+Initializes a configuration file where you can set default options for command line flags, both globally and on a per-command basis.  These defaults override the built-in defaults and allow you to omit commonly-used command line flags when invoking this program
+
+==== Options
+These options are specified *after* the command.
+
+[<tt>--force</tt>] force overwrite of existing config file
+=== <tt>login Describe arguments to login here</tt>
+
+Launch Synoptix Login
+
+==== Options
+These options are specified *after* the command.
+
+[<tt>-a, --auto</tt>] Automatically login
+=== <tt>runner parameters</tt>
+
+Runs the Synoptix Report Runner.  If the report you are running contains any Variable parameters, and you would like to have those parameters defaulted, you can enter the defaulted parameters as follows: parameterName=”value”. The parameter name is the name that you would see when you modify the Sphere properties. In the case below you would enter the following: “Customer #=value” Please Note: Because the parameterName in this case contains a space, the entire string is surrounded by quotes.
+
+
+==== Options
+These options are specified *after* the command.
+
+[<tt>-d, --date=Report Date</tt>] Date to run Report(YYYY-MM-DD) <i>( default: <tt>today</tt>)</i>
+[<tt>-r, --report=Report Name</tt>] Report to Run
+=== <tt>server Describe arguments to server here</tt>
+
+Launch the Report Scheduling Server
+
+==== Options
+These options are specified *after* the command.
+
+[<tt>-s, --server</tt>] Run with no GUI
