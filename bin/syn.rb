@@ -15,7 +15,7 @@ require 'rubygems'
 require 'gli'
 require 'syn_version'
 
-include GLI
+include GLI::App
 
 config_file File.join(ENV['HOME'],'.syn.rc.yaml')
 
@@ -100,7 +100,10 @@ command :runner do |c|
         report_name = options[:r]
         report_date = options[:d]
         puts report_date
-      command = "com.compusoftdevelopment.runner.SingleReportRunner report='#{report_name}' date=#{report_date}"
+      command = "com.compusoftdevelopment.runner.SingleReportRunner"
+        if options[:report_name]
+        command = command + "report='#{report_name}' date=#{report_date}"
+      end
       if not args.empty?
           command = command + ' ' + args.join(' ')
       end
@@ -144,4 +147,4 @@ on_error do |exception|
   true
 end
 
-exit GLI.run(ARGV)
+exit run(ARGV)
